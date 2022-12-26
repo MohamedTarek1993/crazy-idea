@@ -137,9 +137,19 @@ add_action( 'widgets_init', 'crazy_idea_widgets_init' );
 /**
  * Enqueue scripts and styles.
  */
+$base = get_template_directory_uri() . '/';
+
 function crazy_idea_scripts() {
-	wp_enqueue_style( 'crazy_idea-style', get_stylesheet_uri(), array(), _S_VERSION );
+	global $base;
+
+	//style 
+	wp_enqueue_style('boostrap-style', $base . 'assets/css/bootstrap.min.css', [], null);
+	wp_enqueue_style('aos-style', $base . 'assets/css/aos-anmite.css', [], null);
+	wp_enqueue_style('aos-style', $base . 'assets/css/swiper-demos.css', [], null);
 	wp_style_add_data( 'crazy_idea-style', 'rtl', 'replace' );
+
+   //scripts
+   
 
 	wp_enqueue_script( 'crazy_idea-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 
