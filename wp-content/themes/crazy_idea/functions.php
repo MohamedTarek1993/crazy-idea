@@ -49,9 +49,20 @@ function crazy_idea_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
-			'menu-1' => esc_html__( 'Primary', 'crazy_idea' ),
+			'main-menu' => esc_html__('Primary', 'crazy_idea'),
+			'footer-menu' => esc_html__('Footer', 'crazy_idea'),
 		)
 	);
+	function get_menu($location, $class)
+	{
+		wp_nav_menu(array(
+			'theme_location'  => $location,
+			'menu_class'   =>  $class,
+			'container' =>  '',
+
+
+		));
+	}
 
 	/*
 		* Switch default core markup for search form, comment form, and comments
@@ -146,9 +157,16 @@ function crazy_idea_scripts() {
 	wp_enqueue_style('boostrap-style', $base . 'assets/css/bootstrap.min.css', [], null);
 	wp_enqueue_style('aos-style', $base . 'assets/css/aos-anmite.css', [], null);
 	wp_enqueue_style('aos-style', $base . 'assets/css/swiper-demos.css', [], null);
+	wp_enqueue_style('main-style', $base . 'assets/scss/main.min.css', [], null);
+
 	wp_style_add_data( 'crazy_idea-style', 'rtl', 'replace' );
 
    //scripts
+   wp_enqueue_script('jqruey-script', $base . 'assets/js/jquery-3.5.1.min.js', [], null, true);
+   wp_enqueue_script('boostrap-script', $base . 'assets/js/bootstrap.min.js', [], null, true);
+		 wp_enqueue_script('swiper-script', $base . 'assets/js/swiper-demos.js', [], null, true);
+		 wp_enqueue_script('aos-script', $base . 'assets/js/aos-anmite.js', [], null, true);
+	wp_enqueue_script('main-script', $base . 'assets/js/main.js', [], null, true);
    
 
 	wp_enqueue_script( 'crazy_idea-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );

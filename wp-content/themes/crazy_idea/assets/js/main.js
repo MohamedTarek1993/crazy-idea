@@ -105,87 +105,28 @@ var swiper = new Swiper(".mySwiper-2", {
 });
 //  version slider 
 
-//animation about us section
-const hero = document.getElementById('about');
-window.addEventListener('scroll', checkBoxes);
-function checkBoxes() {
-  const triggerBottom = window.innerHeight / 5 * 4;
-  const boxTop = hero.getBoundingClientRect().top;
-  const boxBottom = hero.getBoundingClientRect().bottom;
-  if (boxTop < triggerBottom) {
-    hero.classList.add('animate_about');
-  } if (boxBottom < triggerBottom || boxTop > triggerBottom) {
-    hero.classList.remove('animate_about');
-  }
-
-
-}
-
-
-//animation sponser section
-const client = document.getElementById('client');
-window.addEventListener('scroll', checkClient);
-function checkClient() {
-  const triggerBottom = window.innerHeight / 5 * 4;
-  const boxTop = client.getBoundingClientRect().top;
-  const boxBottom = client.getBoundingClientRect().bottom;
-  if (boxTop < triggerBottom) {
-    client.classList.add('animate_client');
-  } if (boxBottom < triggerBottom || boxTop > triggerBottom) {
-    client.classList.remove('animate_client');
-  }
-
-}
-
-
-//animation feature section
-const feature = document.getElementById('feature');
-window.addEventListener('scroll', checkFeature);
-function checkFeature() {
-  const triggerBottom = window.innerHeight / 6 * 4;
-  const boxTop = feature.getBoundingClientRect().top;
-  const boxBottom = feature.getBoundingClientRect().bottom;
-  if (boxTop < triggerBottom) {
-    feature.classList.add('animate_feature');
-  } if (boxBottom < triggerBottom || boxTop > triggerBottom) {
-    feature.classList.remove('animate_feature');
-  }
-
-}
-
-
-//service service section
-const service = document.querySelectorAll('.service');
-window.addEventListener('scroll', checkService);
-
-function checkService() {
-  const triggerBottom = window.innerHeight / 6 * 4;
-  service.forEach(ele => {
-    const boxTop = ele.getBoundingClientRect().top;
-    // const boxBottom = ele.getBoundingClientRect().bottom;
-    if (boxTop < triggerBottom) {
-      ele.classList.add('animate_service');
-    } else {
-      ele.classList.remove('animate_service');
-    }
+//button to top
+!(function(s) {
+  "use strict";
+  s(".switch").on("click", function() {
+      s("body").hasClass("light") ? (s("body").removeClass("light"), s(".switch").removeClass("switched")) : (s("body").addClass("light"), s(".switch").addClass("switched"));
+  }), s(document).ready(function() {
+      var e = document.querySelector(".progress-wrap path"),
+          t = e.getTotalLength();
+      (e.style.transition = e.style.WebkitTransition = "none"), (e.style.strokeDasharray = t + " " + t), (e.style.strokeDashoffset = t), e.getBoundingClientRect(), (e.style.transition = e.style.WebkitTransition = "stroke-dashoffset 10ms linear");
+      var o = function() {
+          var o = s(window).scrollTop(),
+              r = s(document).height() - s(window).height(),
+              i = t - (o * t) / r;
+          e.style.strokeDashoffset = i;
+      };
+      o(), s(window).scroll(o);
+      jQuery(window).on("scroll", function() {
+          jQuery(this).scrollTop() > 50 ? jQuery(".progress-wrap").addClass("active-progress") : jQuery(".progress-wrap").removeClass("active-progress");
+      }), jQuery(".progress-wrap").on("click", function(s) {
+          return s.preventDefault(), jQuery("html, body").animate({
+              scrollTop: 0
+          }, 550), !1;
+      });
   });
-
-
-}
-
-
-//animation app section
-const app = document.getElementById('app');
-window.addEventListener('scroll', checkApp);
-function checkApp() {
-  const triggerBottom = window.innerHeight / 6 * 4;
-  const boxTop = app.getBoundingClientRect().top;
-  const boxBottom = app.getBoundingClientRect().bottom;
-  if (boxTop < triggerBottom) {
-    app.classList.add('animate_app');
-  } if (boxBottom < triggerBottom || boxTop > triggerBottom) {
-    app.classList.remove('animate_app');
-  }
-
-}
-
+})

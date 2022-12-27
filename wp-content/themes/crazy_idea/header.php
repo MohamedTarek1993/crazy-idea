@@ -22,38 +22,32 @@
 
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
-<div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'crazy_idea' ); ?></a>
+<?php global $base; ?>
 
-	<header id="masthead" class="site-header">
-		<div class="site-branding">
+	<!---------------------- start loader -------------------------------------------->
+	<!-- <div id="preloader"></div> -->
+	<!---------------------- finish loader -------------------------------------------->
+	<!---------------------- start scroll-up -------------------------------------------->
+  <div class="progress-wrap">
+        <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+        </svg>
+    </div>
+    <!---------------------- finish scroll-up -------------------------------------------->
+	<!-- =========== ? NavBar =========== -->
+	<nav class="navbar navbar-expand-lg bg-transparent fixed-top" id="navbar">
+		<div class="container">
 			<?php
-			the_custom_logo();
-			if ( is_front_page() && is_home() ) :
-				?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-				<?php
-			else :
-				?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-				<?php
-			endif;
-			$crazy_idea_description = get_bloginfo( 'description', 'display' );
-			if ( $crazy_idea_description || is_customize_preview() ) :
-				?>
-				<p class="site-description"><?php echo $crazy_idea_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
-			<?php endif; ?>
-		</div><!-- .site-branding -->
-
-		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'crazy_idea' ); ?></button>
-			<?php
-			wp_nav_menu(
-				array(
-					'theme_location' => 'menu-1',
-					'menu_id'        => 'primary-menu',
-				)
-			);
+			if (has_custom_logo()) {
+				the_custom_logo();
+			}
 			?>
-		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavDropdown">
+				<?php echo get_menu('main-menu', 'navbar-nav') ?>
+			</div>
+		</div>
+	</nav>
+	<!-- =========== ? NavBar =========== -->
